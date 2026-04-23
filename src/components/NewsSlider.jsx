@@ -7,10 +7,10 @@ const NewsSlider = () => {
   const sliderRef = useRef(null);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/news')
+    fetch('https://weaec-backend.onrender.com/api/news')
       .then(res => res.json())
       .then(data => {
-        if(data && data.length > 0) setNewsItems(data.slice(0, 4));
+        if (data && data.length > 0) setNewsItems(data.slice(0, 4));
         else setNewsItems([
           {
             id: 1,
@@ -77,9 +77,9 @@ const NewsSlider = () => {
         </motion.div>
 
         {/* Scrollable Container */}
-        <div 
+        <div
           ref={sliderRef}
-          className="flex gap-6 overflow-x-auto pb-8 snap-x snap-mandatory scrollbar-hide" 
+          className="flex gap-6 overflow-x-auto pb-8 snap-x snap-mandatory scrollbar-hide"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
           {newsItems.map((news) => (

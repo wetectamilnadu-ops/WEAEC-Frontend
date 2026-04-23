@@ -8,7 +8,7 @@ const GalleryNewsPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  
+
   const [activeTab, setActiveTab] = useState('gallery'); // 'gallery' | 'news' | 'inquiries'
   const [galleryItems, setGalleryItems] = useState([]);
   const [newsItems, setNewsItems] = useState([]);
@@ -34,15 +34,15 @@ const GalleryNewsPage = () => {
 
   const fetchData = async () => {
     try {
-      const gRes = await fetch('http://localhost:5000/api/gallery');
+      const gRes = await fetch('https://weaec-backend.onrender.com/api/gallery');
       const gData = await gRes.json();
       setGalleryItems(gData);
 
-      const nRes = await fetch('http://localhost:5000/api/news');
+      const nRes = await fetch('https://weaec-backend.onrender.com/api/news');
       const nData = await nRes.json();
       setNewsItems(nData);
 
-      const iRes = await fetch('http://localhost:5000/api/inquiry');
+      const iRes = await fetch('https://weaec-backend.onrender.com/api/inquiry');
       if (iRes.ok) {
         const iData = await iRes.json();
         setInquiryItems(iData);
@@ -72,7 +72,7 @@ const GalleryNewsPage = () => {
     }
 
     try {
-      const res = await fetch(`http://localhost:5000/api/${activeTab}`, {
+      const res = await fetch(`https://weaec-backend.onrender.com/api/${activeTab}`, {
         method: 'POST',
         body: formData,
       });
@@ -95,10 +95,10 @@ const GalleryNewsPage = () => {
   };
 
   const handleDelete = async (id, type) => {
-    if(!window.confirm("Are you sure you want to delete this?")) return;
+    if (!window.confirm("Are you sure you want to delete this?")) return;
 
     try {
-      await fetch(`http://localhost:5000/api/${type}/${id}`, { method: 'DELETE' });
+      await fetch(`https://weaec-backend.onrender.com/api/${type}/${id}`, { method: 'DELETE' });
       fetchData();
     } catch (err) {
       console.error(err);
@@ -110,8 +110,8 @@ const GalleryNewsPage = () => {
       <div className="flex justify-between items-center mb-10">
         <h2 className="text-3xl md:text-5xl font-bold text-primary">Admin Panel</h2>
         {isAuthenticated && (
-          <button 
-            onClick={() => setIsAuthenticated(false)} 
+          <button
+            onClick={() => setIsAuthenticated(false)}
             className="bg-gray-200 hover:bg-gray-300 text-gray-700 px-4 py-2 rounded-lg font-bold transition-colors"
           >
             Logout
@@ -137,23 +137,23 @@ const GalleryNewsPage = () => {
         </motion.div>
       ) : (
         <div className="flex flex-col lg:flex-row gap-8">
-          
+
           {/* Upload Form Section */}
           <div className="bg-white p-6 rounded-2xl shadow border border-primary/20 flex-1 lg:max-w-md h-fit lg:sticky lg:top-24">
             <div className="flex gap-4 mb-6">
-              <button 
+              <button
                 className={`flex-1 py-2 font-bold rounded-lg ${activeTab === 'gallery' ? 'bg-primary text-white' : 'bg-gray-100 text-gray-600'}`}
                 onClick={() => setActiveTab('gallery')}
               >
                 Gallery
               </button>
-              <button 
+              <button
                 className={`flex-1 py-2 font-bold rounded-lg ${activeTab === 'news' ? 'bg-primary text-white' : 'bg-gray-100 text-gray-600'}`}
                 onClick={() => setActiveTab('news')}
               >
                 News
               </button>
-              <button 
+              <button
                 className={`flex-1 py-2 font-bold rounded-lg ${activeTab === 'inquiries' ? 'bg-primary text-white' : 'bg-gray-100 text-gray-600'}`}
                 onClick={() => setActiveTab('inquiries')}
               >
@@ -173,7 +173,7 @@ const GalleryNewsPage = () => {
                     <label className="block text-sm text-gray-700 mb-1">Date</label>
                     <input type="text" value={date} onChange={(e) => setDate(e.target.value)} className="w-full px-4 py-2 border rounded-lg outline-none focus:ring-2 focus:ring-primary/50" placeholder="e.g. April 15, 2026" />
                   </div>
-                  
+
                   {activeTab === 'gallery' && (
                     <div>
                       <label className="block text-sm text-gray-700 mb-1">Description</label>
@@ -187,7 +187,7 @@ const GalleryNewsPage = () => {
                       <textarea required value={summary} onChange={(e) => setSummary(e.target.value)} className="w-full px-4 py-2 border rounded-lg outline-none focus:ring-2 focus:ring-primary/50 h-24" placeholder="News summary..."></textarea>
                     </div>
                   )}
-                  
+
                   <div>
                     <label className="block text-sm text-gray-700 mb-1">Upload File</label>
                     <div className="border-2 border-dashed border-gray-300 p-4 rounded-lg flex flex-col items-center cursor-pointer hover:bg-gray-50 bg-white">
@@ -201,12 +201,12 @@ const GalleryNewsPage = () => {
                 </form>
               </>
             ) : (
-               <div className="text-center py-6">
-                 <p className="text-gray-500 mb-4">Review and manage received user inquiries directly from this portal.</p>
-                 <div className="bg-primary/10 text-primary p-4 rounded-xl font-bold">
-                    {inquiryItems.length} Inquiries Total
-                 </div>
-               </div>
+              <div className="text-center py-6">
+                <p className="text-gray-500 mb-4">Review and manage received user inquiries directly from this portal.</p>
+                <div className="bg-primary/10 text-primary p-4 rounded-xl font-bold">
+                  {inquiryItems.length} Inquiries Total
+                </div>
+              </div>
             )}
           </div>
 
@@ -216,16 +216,16 @@ const GalleryNewsPage = () => {
               {activeTab === 'inquiries' ? (
                 inquiryItems.map((item, index) => (
                   <div key={index} className="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 flex flex-col hover:shadow-md transition-shadow p-5 relative overflow-hidden">
-                     <div className="absolute top-0 right-0 py-1 px-3 bg-primary text-white text-xs font-bold rounded-bl-lg">
-                        {item.service}
-                     </div>
-                     <h4 className="font-bold text-lg text-gray-800 border-b border-gray-100 pb-2 mb-2 pr-20">{item.name}</h4>
-                     <p className="text-sm font-bold text-gray-700">{item.email}</p>
-                     <p className="text-xs text-gray-500 mb-3">{item.phone} • {new Date(item.createdAt).toLocaleDateString()}</p>
-                     <div className="bg-gray-50 p-3 rounded-lg">
-                        <p className="text-xs font-bold text-primary mb-1">Plan: {item.plan}</p>
-                        <p className="text-sm text-gray-600 line-clamp-4">{item.message}</p>
-                     </div>
+                    <div className="absolute top-0 right-0 py-1 px-3 bg-primary text-white text-xs font-bold rounded-bl-lg">
+                      {item.service}
+                    </div>
+                    <h4 className="font-bold text-lg text-gray-800 border-b border-gray-100 pb-2 mb-2 pr-20">{item.name}</h4>
+                    <p className="text-sm font-bold text-gray-700">{item.email}</p>
+                    <p className="text-xs text-gray-500 mb-3">{item.phone} • {new Date(item.createdAt).toLocaleDateString()}</p>
+                    <div className="bg-gray-50 p-3 rounded-lg">
+                      <p className="text-xs font-bold text-primary mb-1">Plan: {item.plan}</p>
+                      <p className="text-sm text-gray-600 line-clamp-4">{item.message}</p>
+                    </div>
                   </div>
                 ))
               ) : (
@@ -237,10 +237,10 @@ const GalleryNewsPage = () => {
                         <h4 className="font-bold text-lg text-gray-800 line-clamp-2">{item.title}</h4>
                       </div>
                       <p className="text-xs font-bold text-primary mb-3">{item.date}</p>
-                      
+
                       {item.description && <p className="text-sm text-gray-600 mt-2">{item.description}</p>}
                       {item.summary && <p className="text-sm text-gray-600 mt-2 line-clamp-4">{item.summary}</p>}
-                      
+
                       <div className="mt-auto pt-4 flex justify-end gap-2 border-t border-gray-50 pt-4">
                         <button onClick={() => handleDelete(item.id, activeTab)} className="text-red-500 hover:text-white hover:bg-red-500 bg-red-50 px-3 py-1.5 rounded-lg transition-colors flex items-center gap-1 text-sm font-bold">
                           <Trash size={16} /> Delete
@@ -250,16 +250,16 @@ const GalleryNewsPage = () => {
                   </div>
                 ))
               )}
-              
+
               {activeTab === 'inquiries' && inquiryItems.length === 0 && (
-                 <div className="col-span-full py-12 text-center bg-white rounded-xl border border-gray-100 border-dashed">
-                   <p className="text-gray-500 text-lg">No inquiries received yet.</p>
-                 </div>
+                <div className="col-span-full py-12 text-center bg-white rounded-xl border border-gray-100 border-dashed">
+                  <p className="text-gray-500 text-lg">No inquiries received yet.</p>
+                </div>
               )}
               {activeTab !== 'inquiries' && (activeTab === 'gallery' ? galleryItems : newsItems).length === 0 && (
-                 <div className="col-span-full py-12 text-center bg-white rounded-xl border border-gray-100 border-dashed">
-                   <p className="text-gray-500 text-lg">No {activeTab} items found.</p>
-                 </div>
+                <div className="col-span-full py-12 text-center bg-white rounded-xl border border-gray-100 border-dashed">
+                  <p className="text-gray-500 text-lg">No {activeTab} items found.</p>
+                </div>
               )}
             </div>
           </div>

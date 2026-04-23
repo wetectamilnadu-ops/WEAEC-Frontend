@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 const Card = ({ title, description, icon }) => {
   return (
-    <motion.div 
+    <motion.div
       whileHover={{ scale: 1.05, y: -5 }}
       transition={{ type: "spring", stiffness: 300 }}
       className="bg-white border border-primary-border rounded-xl p-6 shadow-sm hover:shadow-lg hover:shadow-primary/20 transition-all duration-300 flex flex-col items-center text-center group"

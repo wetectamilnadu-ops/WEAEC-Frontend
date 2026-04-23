@@ -8,8 +8,8 @@ const GalleryPage = () => {
   useEffect(() => {
     // Scroll to top when page loads
     window.scrollTo(0, 0);
-    
-    fetch('http://localhost:5000/api/gallery')
+
+    fetch('https://weaec-backend.onrender.com/api/gallery')
       .then(res => res.json())
       .then(data => {
         if (data && data.length > 0) {
@@ -44,18 +44,18 @@ const GalleryPage = () => {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {galleryImages.map((item, index) => (
-              <motion.div 
-                key={item.id || index} 
-                initial="hidden" 
-                whileInView="visible" 
-                viewport={{ once: true }} 
-                variants={fadeInUp} 
+              <motion.div
+                key={item.id || index}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeInUp}
                 className="group relative rounded-2xl overflow-hidden shadow-md border border-gray-100 hover:shadow-xl transition-all duration-300"
               >
-                <img 
-                  src={item.src || item.image} 
-                  alt={item.title} 
-                  className="w-full h-72 object-cover transform group-hover:scale-105 transition-transform duration-500" 
+                <img
+                  src={item.src || item.image}
+                  alt={item.title}
+                  className="w-full h-72 object-cover transform group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/40 to-transparent flex flex-col justify-end p-6 opacity-90 group-hover:opacity-100 transition-opacity">
                   <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>

@@ -13,10 +13,10 @@ const EventsGallery = () => {
   const sliderRef = useRef(null);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/gallery')
+    fetch('https://weaec-backend.onrender.com/api/gallery')
       .then(res => res.json())
       .then(data => {
-        if(data && data.length > 0) setGalleryImages(data.slice(0, 5));
+        if (data && data.length > 0) setGalleryImages(data.slice(0, 5));
         else setGalleryImages([
           { id: 1, src: gallery1, title: "Women's Day Summit", date: "March 8, 2026" },
           { id: 2, src: gallery2, title: "Tech Skill Workshop", date: "April 15, 2026" },
@@ -59,9 +59,9 @@ const EventsGallery = () => {
         </div>
       </motion.div>
 
-      <div 
+      <div
         ref={sliderRef}
-        className="flex gap-6 overflow-x-auto pb-8 snap-x snap-mandatory scrollbar-hide" 
+        className="flex gap-6 overflow-x-auto pb-8 snap-x snap-mandatory scrollbar-hide"
         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
       >
         {galleryImages.map((item) => (
