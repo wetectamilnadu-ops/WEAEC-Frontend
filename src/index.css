@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #ec407a;
+  --color-primary-hover: #d81b60;
+  --color-primary-light: #fce4ec;
+  --color-primary-border: #f8bbd0;
+  
+  --font-sans: "Inter", "Roboto", "Outfit", sans-serif;
+}
+
+body {
+  font-family: Arial, sans-serif; /* fallback */
+  margin: 0;
+  background-color: #fafafa;
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+* {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+html {
+  scroll-behavior: smooth;
+}
