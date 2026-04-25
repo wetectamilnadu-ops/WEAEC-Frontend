@@ -11,9 +11,12 @@ const PopupInquiry = () => {
   });
 
   useEffect(() => {
-    // Delay to not immediately block the user on page load (wait 1.5 seconds)
-    const timer = setTimeout(() => setIsOpen(true), 1500);
-    return () => clearTimeout(timer);
+    const hasFilled = localStorage.getItem('inquiryFilled');
+    if (!hasFilled) {
+      // Delay to not immediately block the user on page load (wait 1.5 seconds)
+      const timer = setTimeout(() => setIsOpen(true), 1500);
+      return () => clearTimeout(timer);
+    }
   }, []);
 
   useEffect(() => {
@@ -70,6 +73,7 @@ const PopupInquiry = () => {
         message: formData.message || 'No message provided'
       });
       setStatus('success');
+      localStorage.setItem('inquiryFilled', 'true');
       setFormData({ name: '', email: '', phone: '', service: '', plan: '', message: '' });
       setTimeout(() => {
         setIsOpen(false);
@@ -99,13 +103,7 @@ const PopupInquiry = () => {
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
               className="bg-white rounded-2xl md:rounded-3xl shadow-[0_0_40px_rgba(233,30,99,0.15)] border border-primary-light w-full max-w-3xl relative p-6 sm:p-8 md:p-12 my-auto mx-4 sm:mx-auto max-h-[95vh] overflow-y-auto"
             >
-              {/* Close Button */}
-              <button 
-                onClick={closePopup}
-                className="absolute top-4 right-4 md:top-6 md:right-6 z-20 p-2 text-gray-400 hover:text-gray-800 hover:bg-gray-100 rounded-full transition-colors bg-white/80 backdrop-blur shadow-sm md:shadow-none md:bg-transparent"
-              >
-                <X size={24} />
-              </button>
+              {/* Close Button Removed */}
 
               <div className="text-center mb-8 md:mb-10 mt-4 md:mt-0">
                 <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary mb-3 md:mb-4">Make an Inquiry</h2>
