@@ -12,7 +12,7 @@ const Navbar = () => {
         <a href="/" className="flex items-center gap-3 flex-1 hover:opacity-90 transition-opacity">
           <img src={logo} alt="Women Empowerment Logo" className="w-8 h-8 md:w-10 md:h-10 object-cover bg-white rounded-full p-0.5" />
           <h1 className="text-lg md:text-2xl font-bold tracking-wide">
-            Women Entrepreneur Training and Employment Center
+            Women Entrepreneur Training and Employment Centre
           </h1>
         </a>
 
