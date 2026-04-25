@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Sections from './components/Sections';
@@ -24,10 +24,13 @@ const HomePage = () => (
 );
 
 function App() {
+  const location = useLocation();
+  const showPopup = location.pathname !== '/admin';
+
   return (
     <div className="min-h-screen flex flex-col font-sans text-gray-800 bg-gray-50">
       <Navbar />
-      <PopupInquiry />
+      {showPopup && <PopupInquiry />}
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/admin" element={<GalleryNewsPage />} />
