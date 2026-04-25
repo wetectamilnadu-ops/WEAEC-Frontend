@@ -37,7 +37,7 @@ const Footer = () => {
 
       <div className="container mx-auto px-4 py-16 grid md:grid-cols-2 lg:grid-cols-3 gap-12 relative z-10">
         <div className="space-y-4">
-          <h3 className="text-2xl font-bold text-primary-light mb-6">Women Entrepreneur Training and Employment Center</h3>
+          <h3 className="text-2xl font-bold text-primary-light mb-6">Women Entrepreneur Training and Employment Centre</h3>
           <p className="text-gray-300 leading-relaxed font-light">
              பெண்கள் வளர்ச்சி நாட்டின் வளர்ச்சி<br/>
              சுயநிறைவு, சக்திவாய்ந்த பெண்கள்<br/>
@@ -73,7 +73,7 @@ const Footer = () => {
       </div>
 
       <div className="border-t border-gray-800 py-6 text-center text-gray-400 text-sm">
-        <p>© 2026 Women Entrepreneur Training and Employment Center. All Rights Reserved.</p>
+        <p>© 2026 Women Entrepreneur Training and Employment Centre. All Rights Reserved.</p>
       </div>
     </footer>
   );
