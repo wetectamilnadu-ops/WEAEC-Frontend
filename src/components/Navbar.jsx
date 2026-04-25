@@ -10,7 +10,7 @@ const Navbar = () => {
     <header className="bg-primary text-white sticky top-0 z-50 shadow-md">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <a href="/" className="flex items-center gap-3 flex-1 hover:opacity-90 transition-opacity">
-          <img src={logo} alt="Women Empowerment Logo" className="w-8 h-8 md:w-10 md:h-10 object-cover bg-white rounded-full p-0.5" />
+          <img src={logo} alt="Women Empowerment Logo" className="w-12 h-12 md:w-16 md:h-16 object-contain" />
           <h1 className="text-lg md:text-2xl font-bold tracking-wide">
             Women Entrepreneur Training and Employment Centre
           </h1>
